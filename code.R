@@ -51,7 +51,7 @@ knnPredict <- predict(knnFit,newdata = testing, type = "prob")
 precrec_obj <- evalmod(scores = knnPredict[,2], labels = testing$V1)
 autoplot(precrec_obj)
 ##################################################################################################
-# Random forrest
+# Random forest
 rfFit <- train(V1 ~ ., data = training, method = "rf", trControl = ctrl, preProcess = c("center","scale"), tuneLength = 20)
 rfTrainingROCGraph<- plot(rfFit,type ="S", main = "Random Forest Algorithm")
 #metrics
@@ -61,13 +61,13 @@ mean(otherPredict == testing$V1)
 # ROC & precision-recall plots
 rfPredict <- predict(rfFit,newdata = testing, type = "prob")
 precrec_obj <- evalmod(scores = rfPredict[,2], labels = testing$V1)
-autoplot(precrec_obj)s
+autoplot(precrec_obj)
 ##################################################################################################
 #Naive Bayes
 nbFit <- train(V1 ~ ., data = training, method = "naive_bayes", trControl = ctrl, preProcess = c("center","scale"), tuneLength = 20)
 nbTrainingROCGraph<- plot(nbFit,type ="S", main = "Naive Bayes Algorithm")
 #metrics
-nbotherPredict <- predict(nbFit,newdata = testing )
+otherPredict <- predict(nbFit,newdata = testing )
 confusionMatrix(otherPredict, testing$V1 )
 mean(otherPredict == testing$V1)
 # ROC & precision-recall plots
@@ -79,9 +79,9 @@ autoplot(precrec_obj)
 rFit <- train(V1 ~ ., data = training, method = "rpart", trControl = ctrl, preProcess = c("center","scale"), tuneLength = 20)
 rTrainingROCGraph<- plot(rFit,type ="S", main = "Decision Tree Algorithm")
 #metrics
-rotherPredict <- predict(rFit,newdata = testing )
+otherPredict <- predict(rFit,newdata = testing )
 confusionMatrix(otherPredict, testing$V1 )
-mean(rotherPredict == testing$V1)
+mean(otherPredict == testing$V1)
 # ROC & precision-recall plots
 rPredict <- predict(rFit,newdata = testing, type = "prob")
 
