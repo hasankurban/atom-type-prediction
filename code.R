@@ -17,12 +17,12 @@ dim(finalData)
 ################################# PARTION DATA: TRAINING AND TESTING #########################################################
 library(caret)
 set.seed(333)
-#Spliting data as training and test set. Using createDataPartition() function from caret
+#Spliting data as training and test set. 
 indxTrain <- createDataPartition(y = finalData$V1,p = 0.75,list = FALSE)
 training <- finalData[indxTrain,]
 testing <-finalData[-indxTrain,]
 
-#Checking distibution in origanl data and partitioned data
+#Checking distibution in original data and partitioned data
 prop.table(table(training$V1)) * 100
 prop.table(table(testing$V1)) * 100
 prop.table(table(finalData$V1)) * 100
